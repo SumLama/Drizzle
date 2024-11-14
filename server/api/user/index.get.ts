@@ -4,7 +4,10 @@ export default defineEventHandler(async(event)=>{
     try{
     const res = await useDb().select().from(user)
    return res
-    } catch(error){
-        console.log("error:",error)
+    } catch(error:any){
+        throw createError({
+            statusCode: 400,
+            statusMessage: error.message,
+          })
     }  
 })

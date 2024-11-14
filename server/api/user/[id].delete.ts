@@ -6,7 +6,10 @@ export default defineEventHandler(async(event)=>{
     try{
     const res = await useDb().delete(user).where(eq(user.id,id))
    return res
-    } catch(error){
-        console.log("error:",error)
+    } catch(error:any){
+        throw createError({
+            statusCode: 400,
+            statusMessage: error.message,
+          })
     }  
 })

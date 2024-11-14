@@ -1,12 +1,11 @@
 import useDb from "~/server/utils/db"
 import { user } from "~/server/db/schema"
-import { z } from "zod"
+import { z, ZodError } from "zod"
 
 const userSchema = z.object({
-    firstName : z.string().min(1,{message:'Firstname is required'}),
-    lastName : z.string().min(1,{message:'Lastname is required'}),
-    address : z.string().min(1,{message:'Address is required'})
-
+    firstName : z.string().trim().min(1,{message:"Firstname is required"}),
+    lastName : z.string().trim().min(1,{message:"Lastname is required"}),
+    address : z.string().trim().min(1,{message:"Address is required"})
 })
 export default defineEventHandler(async(event)=>{
     try{
@@ -18,8 +17,11 @@ export default defineEventHandler(async(event)=>{
      return res
      }
 
-    } catch(err){
-        if(err) throw err
+    } catch(error:any){
+        throw createError({
+            statusCode: 400,
+            statusMessage: error.instanceof(ZodError)?error.issues[0].message: error.message,
+        })
     }
 })
 
