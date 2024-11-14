@@ -1,0 +1,1 @@
+ALTER TABLE `data` RENAME TO `user`;
