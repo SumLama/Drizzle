@@ -6,7 +6,7 @@ definePageMeta({
 </script>
 <template>
   <div>
-  <UButton label="Form" @click="isFormOpen ==true"/>
+  <UButton label="Form" @click="isFormOpen=true"/>
     <Form v-if="isFormOpen"/>
   </div>
    
