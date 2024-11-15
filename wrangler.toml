@@ -1,0 +1,5 @@
+
+d1_databases = [
+  { binding = "D1", database_name = "user_db", database_id = "f208f4eb-eed7-4154-8883-6b95c42c884b", migrations_dir = "./server/db/migrations" }
+]
+
