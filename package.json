@@ -14,6 +14,7 @@
     "better-sqlite3": "^11.5.0",
     "drizzle-orm": "^0.36.1",
     "nuxt": "^3.14.159",
+    "pathe": "^1.1.2",
     "vue": "latest",
     "vue-router": "latest",
     "vue-toast-notification": "^3.1.3",
