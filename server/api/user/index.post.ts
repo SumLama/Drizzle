@@ -1,4 +1,4 @@
-import useDb from "~/server/utils/db"
+import {useDb} from "~/server/utils/db"
 import { user } from "~/server/db/schema"
 import { z, ZodError } from "zod"
 
@@ -10,7 +10,6 @@ const userSchema = z.object({
 export default defineEventHandler(async(event)=>{
     try{
      const body = await readBody(event)
-     console.log("Body:",body)
      if(body){
      const validatedData = userSchema.parse(body)   
      const res = await useDb().insert(user).values(validatedData)

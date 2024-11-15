@@ -1,4 +1,4 @@
-import useDb from "~/server/utils/db"
+import {useDb} from "~/server/utils/db"
 import { user } from "~/server/db/schema"
 export default defineEventHandler(async(event)=>{
     try{
