@@ -19,7 +19,7 @@ export default defineEventHandler(async(event)=>{
     } catch(error:any){
         throw createError({
             statusCode: 400,
-            statusMessage: error.instanceof(ZodError)?error.issues[0].message: error.message,
+            statusMessage: error.issues ? error.issues[0].message: error.message,
         })
     }
 })
