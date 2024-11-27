@@ -1,4 +1,6 @@
 <script setup>
+import { resolve } from 'pathe';
+
 const toast = useToast()
 const title = 'User List'
 const description =
@@ -24,7 +26,7 @@ const user = ref({
 })
 const handleCreate = async ()=>{
     try{
-    await $fetch('api/user',{
+   const res =  await $fetch('/api/user/',{
         method:'POST',
         body:{
             firstName:user.value.firstName,
@@ -32,11 +34,14 @@ const handleCreate = async ()=>{
             address:user.value.address
         }
     })
+    console.log("Res:",res)
+    if(res){
         toast.add({
         id: 'created',
         title: 'Created successfully', 
         
      })
+    }
      user.value = {}
     isOpen.value=false
     await execute()
