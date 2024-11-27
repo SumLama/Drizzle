@@ -8,20 +8,10 @@ const userSchema = z.object({
     address : z.string().trim().min(1,{message:"Address is required"})
 })
 export default defineEventHandler(async(event)=>{
-    try{
-     const body = await readBody(event)
-     if(body){
-     const validatedData = userSchema.parse(body)   
-     const res = await useDb().insert(user).values(validatedData)
+     const body = await readValidatedBody(event, userSchema.parse) 
+     const res = await useDb().insert(user).values(body)
      return res
-     }
 
-    } catch(error:any){
-        throw createError({
-            statusCode: 400,
-            statusMessage: error.issues ? error.issues[0].message: error.message,
-        })
-    }
 })
 
 
