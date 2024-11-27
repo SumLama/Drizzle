@@ -11,7 +11,6 @@ export default defineEventHandler(async(event)=>{
      const body = await readValidatedBody(event, userSchema.parse) 
      const res = await useDb().insert(user).values(body)
      return res
-
 })
 
 
