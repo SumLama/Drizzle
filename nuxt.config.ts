@@ -10,5 +10,22 @@ export default defineNuxtConfig({
   },
   runtimeConfig:{
     dbDir: resolve('./server/db'),
-  }
+  },
+  nitro: {
+    preset: "cloudflare-pages",
+    //enable database
+    experimental: {
+      database: true
+    },
+    database: {
+      myDatabase: {
+        connector: "cloudflare-d1",
+        options: {
+          bindingName: "D1"
+        }
+      }
+    }
+  },
+  
+
 })
